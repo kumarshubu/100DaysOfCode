@@ -1,0 +1,30 @@
+Problem link : https://leetcode.com/explore/challenge/card/30-day-leetcoding-challenge/528/week-1/3283/
+
+Solution :
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+    map<int,bool>map;
+    int answer;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(map.find(nums[i])->second==0)
+            {
+                map.insert({nums[i],true});
+            }
+            else
+            {
+                map.erase(nums[i]);           
+            }
+        }
+        for(auto i=map.begin();i!=map.end();i++)
+        {
+            if(i->second==true)
+            {
+                answer= i->first;
+            }
+        }
+return answer;
+    }
+};
