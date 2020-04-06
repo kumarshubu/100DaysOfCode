@@ -1,0 +1,76 @@
+Problem 1: https://leetcode.com/explore/challenge/card/30-day-leetcoding-challenge/528/week-1/3284/
+
+Solution : 
+
+class Solution {
+public:
+    bool isHappy(int n) {
+        map<int,bool>m;
+     int rem;
+     int x=n;
+        while(n!=1)
+        {
+            x=n;
+            rem=0;
+            if(m.find(n)->second==true)
+            {
+                return false;
+            }
+            m.insert({n,true});
+            while(x!=0)
+            {
+                rem+=(x%10)*(x%10);
+                x/=10;
+            }
+            n=rem;
+        }
+        return true;
+    }
+};
+
+
+
+Problem 2: https://leetcode.com/explore/challenge/card/30-day-leetcoding-challenge/528/week-1/3285/
+
+Solution : 
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int max=INT_MIN;
+        int sum=0,min=INT_MIN;
+        // vector<int>a;
+        for(int j=0;j<nums.size();j++)
+        {
+            sum=0;
+            if(nums[j]>min)
+            {
+                min=nums[j];
+            }
+            // max=nums[j];
+            if(nums[j]<0)
+            {
+                continue;
+            }
+            for(int i=j;i<nums.size();i++)
+            {
+                if(nums[i]<0)
+                {
+                    sum+=nums[i];
+                    continue;
+                }
+                sum+=nums[i];
+                // a.push(sum);
+                if(max<sum)
+                {
+                    max=sum;
+                }
+            }            
+        }
+        if(max==INT_MIN)
+        {
+            max=min;
+        }
+        return max;
+    }
+};
